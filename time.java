@@ -31,6 +31,7 @@ public class time {
       minute+=1;
       if(minute==60){
           hour+=1;
+          minute=0;
       }
       if(hour==12){
           PM=true;
@@ -43,4 +44,3 @@ public class time {
     }
    public int leavetime;
 }
-
