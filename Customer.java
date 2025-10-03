@@ -1,6 +1,10 @@
 
 public class customer {
-    
+    double currenttimeinstore=.016;
+    double currenttimecheckout=.016;
+    boolean Shopping=true;
+    boolean left=false;
+    boolean checkout=false;
     public int Arrivaltimeminute;
     public int Arrivaltimehour;
     public int minute=0;
@@ -29,7 +33,47 @@ public class customer {
     }
     public void minuteincrease(){
         minute+=1;
-        
+
+    }
+
+    public double getCurrenttimecheckout() {
+        return currenttimecheckout;
+    }
+
+    public double getCurrenttimeinstore() {
+        return currenttimeinstore;
+    }
+
+    public void setCurrenttimecheckout(double currenttimecheckout) {
+        this.currenttimecheckout += .16;
+    }
+
+    public void setCurrenttimeinstore(double currenttimeinstore) {
+        this.currenttimeinstore += .16;
+    }
+
+    public void setShopping(boolean shopping) {
+        Shopping = shopping;
+    }
+
+    public boolean isCheckout() {
+        return checkout;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isShopping() {
+        return Shopping;
+    }
+
+    public void setCheckout(boolean checkout) {
+        this.checkout = checkout;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
     }
 
     public int getMinute() {
