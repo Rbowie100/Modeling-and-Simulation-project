@@ -1,4 +1,5 @@
 
+
 public class customer {
     double currenttimeinstore=.016;
     double currenttimecheckout=.016;
@@ -44,12 +45,12 @@ public class customer {
         return currenttimeinstore;
     }
 
-    public void setCurrenttimecheckout(double currenttimecheckout) {
-        this.currenttimecheckout += .16;
+    public void setCurrenttimecheckout() {
+        currenttimecheckout += .16;
     }
 
-    public void setCurrenttimeinstore(double currenttimeinstore) {
-        this.currenttimeinstore += .16;
+    public void setCurrenttimeinstore() {
+        currenttimeinstore += .16;
     }
 
     public void setShopping(boolean shopping) {
@@ -80,4 +81,3 @@ public class customer {
         return minute;
     }
 }
-
