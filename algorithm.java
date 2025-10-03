@@ -44,7 +44,7 @@ public class algorithm {
 
         value=value.divide(whole,7, RoundingMode.HALF_DOWN);
         go= value.doubleValue();
-        //BigInteger[] value= whole.divideAndRemainder(num);
+       
 
         return go;
     }
@@ -63,7 +63,7 @@ public class algorithm {
 
         value=value.divide(whole,7, RoundingMode.HALF_DOWN);
         go= value.doubleValue();
-        //BigInteger[] value= whole.divideAndRemainder(num);
+ 
 
         return go;
     }
@@ -82,7 +82,7 @@ public class algorithm {
 
        value=value.divide(whole,7, RoundingMode.HALF_DOWN);
        go= value.doubleValue();
-        //BigInteger[] value= whole.divideAndRemainder(num);
+
 
         return go;
     }
