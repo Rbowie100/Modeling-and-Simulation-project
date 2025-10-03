@@ -3,9 +3,9 @@ import java.math.RoundingMode;
 
 public class algorithm {
     int historicalCustomer;
-    int historicalWait;
-    int Averagetimespent;
-    algorithm(int historicalCustomer, int historicalWait,int Averagetime){
+    double historicalWait;
+    double Averagetimespent;
+    algorithm(int historicalCustomer, int historicalWait,double Averagetime){
         this.historicalCustomer=historicalCustomer;
         this.historicalWait=historicalWait;
         Averagetimespent=Averagetime;
@@ -44,7 +44,7 @@ public class algorithm {
 
         value=value.divide(whole,7, RoundingMode.HALF_DOWN);
         go= value.doubleValue();
-       
+        //BigInteger[] value= whole.divideAndRemainder(num);
 
         return go;
     }
@@ -63,7 +63,7 @@ public class algorithm {
 
         value=value.divide(whole,7, RoundingMode.HALF_DOWN);
         go= value.doubleValue();
- 
+        //BigInteger[] value= whole.divideAndRemainder(num);
 
         return go;
     }
@@ -82,13 +82,20 @@ public class algorithm {
 
        value=value.divide(whole,7, RoundingMode.HALF_DOWN);
        go= value.doubleValue();
-
+        //BigInteger[] value= whole.divideAndRemainder(num);
 
         return go;
     }
-    public double Exponenetialdistribution(){
-
-        return 0;
+    public double ExponenetialdistributionShop(double currenttime){
+        double exponent=-1*((1/Averagetimespent)*currenttime);
+        double value=(Math.pow(Averagetimespent*Math.E,exponent));
+        return value;
+    }
+    public double ExponenetialdistributionCheckout(double currenttime){
+        double exponent=-1*((1/historicalWait)*currenttime);
+        double value=1-(Math.pow(historicalWait*Math.E,exponent));
+        return value;
     }
 
 }
+
