@@ -36,6 +36,9 @@ public class time {
           PM=true;
           AM=false;
       }
+      if(hour==13){
+          hour=1;
+      }
 
     }
    public int leavetime;
