@@ -24,7 +24,12 @@ Usage:
 4. The simulation should start running and display the time, how many customers are entering at times, and the average at the end.
 
 Architecture Overview:
-The customer component deals with the customer and keeps track of the time the customer has spent in the store, when they arrived, when they left. The time component deals with the time in the store and keeps track of the hour, minute, and what day it is as well as how many customers may enter that day depending on what day it is. The server holds the customer at checkout and releases them when they finish checkout. The algorithm component holds both the exponential distribution and Poisson distribution algorithms.
+The customer component deals with the customer and keeps track of the time the customer has spent in the store, when they arrived, when they left. The time component deals with the time in the store and keeps track of the hour, minute, and what day it is as well as how many customers may enter that day depending on what day it is. The server holds the customer at checkout and releases them when they finish checkout. The algorithm component holds both the exponential distribution and Poisson distribution algorithms. 
+
+UML Design: It maps to the UML design by followig a few of its methods, though quite a few have been removed and it will be updated to reflect that.
+
+Changes: some of the changes was making algorithm handle all of the math with exponential and Poisson to keep it simple and focused on that task. It also has several Poisson methods to consider customers entering at different time intervals and most of the other methods that were on the UML diagram were removed or remaded to better fit the multiple interval idea. Customer had a few values and methods added to better keep track of what how long the customer was in the store and at checkout and to pass that value to the exponenetial distribution to calcualte if they can leave or not. It also has had a few boolean values added to determine where the customer currently is, like whether they are at checkout or not. The time has had a few methods and variables added to better calculate the time and for the time to be more accurate when printing it out. Server has remained the same other than having a value to return the top customer.
+
 
 
 
