@@ -72,18 +72,20 @@ public class Main {
             double value= rand.nextDouble();
             for (int num = 0; num < allcustomers.size(); num++) {
                 if (allcustomers.get(num).Shopping) {
+                    allcustomers.get(num).minuteincrease();
                     if (distribution.ExponenetialdistributionShop(allcustomers.get(num).currenttimeinstore)>=value){
                         queue.QueueAdd(allcustomers.get(num));
 
 
                     }
                     allcustomers.get(num).setCurrenttimeinstore();
+
                 }
 
             }
             for (int num = 0; num < allcustomers.size(); num++) {
                 if (allcustomers.get(num).checkout) {
-
+                    allcustomers.get(num).minuteincrease();
                     allcustomers.get(num).setCurrenttimecheckout();
                 }
 
@@ -95,5 +97,11 @@ public class Main {
 
             }
         }
+        double average=0;
+        for (int num = 0; num < allcustomers.size(); num++) {
+            average+=allcustomers.get(num).getMinute();
+        }
+        average=average/ allcustomers.size();
+        System.out.println("The average time spent in store is "+ average);
     }
 }
