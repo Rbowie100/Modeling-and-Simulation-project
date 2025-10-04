@@ -14,9 +14,13 @@ Installation Instructions:
 2. Download the files and place them in a folder that your IDE of choice can see and run it from.
 
 Usage:
-1.Open main and its files in a IDE of your choice.
+
+1. Open main and its files in a IDE of your choice.
+
 2. Run the main file in the IDE
+
 3. Enter the historical customer amount, Wait time, and time spent in store shopping.
+
 4. The simulation should start running and display the time, how many customers are entering at times, and the average at the end.
 
 Architecture Overview:
