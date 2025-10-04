@@ -24,7 +24,7 @@ public class Main {
         for (int num = 0; num < historicalcustomer; num++) {
             allcustomers.add(new customer(clock.Arrivaltimeminute(), clock.Arrivaltimehour(), clock));
         }
-        System.out.println(historicalcustomer + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + "0" + clock.Arrival());
+        System.out.println(historicalcustomer + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + clock.Arrival());
         while (clock.Arrivaltimeminute() != 0 || clock.Arrivaltimehour() != clock.timeend || !clock.Arrival().equals("P.M")) {
 
             if (clock.Arrivaltimeminute() % 5 == 0) {
@@ -34,7 +34,7 @@ public class Main {
                     for (int num = 0; num < value; num++) {
                         allcustomers.add(new customer(clock.Arrivaltimeminute(), clock.Arrivaltimehour(), clock));
                     }
-                    System.out.print(value + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + "0" + clock.Arrival());
+                    System.out.println(value + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + clock.Arrival());
                 }
             }
             if (clock.Arrivaltimeminute() % 10 == 0) {
@@ -44,7 +44,7 @@ public class Main {
                     for (int num = 0; num < value; num++) {
                         allcustomers.add(new customer(clock.Arrivaltimeminute(), clock.Arrivaltimehour(), clock));
                     }
-                    System.out.print(value + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + "0" + clock.Arrival());
+                    System.out.println(value + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() +  clock.Arrival());
                 }
             }
             if (clock.Arrivaltimeminute() % 15 == 0) {
@@ -54,7 +54,7 @@ public class Main {
                     for (int num = 0; num < value; num++) {
                         allcustomers.add(new customer(clock.Arrivaltimeminute(), clock.Arrivaltimehour(), clock));
                     }
-                    System.out.print(value + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + "0" + clock.Arrival());
+                    System.out.println(value + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() +clock.Arrival());
                 }
 
             }
@@ -64,7 +64,7 @@ public class Main {
                     for (int num = 0; num < historicalcustomer; num++) {
                         allcustomers.add(new customer(clock.Arrivaltimeminute(), clock.Arrivaltimehour(), clock));
                     }
-                    System.out.print(historicalcustomer + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + "0" + clock.Arrival());
+                    System.out.println(historicalcustomer + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + clock.Arrival());
                 }
             }
             clock.increasetime();
@@ -93,6 +93,7 @@ public class Main {
             if(!queue.empty()){
             if (distribution.ExponenetialdistributionCheckout(queue.top().currenttimecheckout)>=value) {
                 queue.Queueremove();
+                System.out.println("customer has left");
             }
 
             }
