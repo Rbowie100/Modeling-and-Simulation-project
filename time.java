@@ -7,7 +7,9 @@ public class time {
     boolean PM=false;
     int timeend=10;
     int timestart=6;
-    String[] Days;
+    String[] Days={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    double [] dayvalues=new double[7];
+
 
     public int Arrivaltimehour (){
         return hour;
@@ -24,9 +26,32 @@ public class time {
         }
         return "AM";
     }
-    public void printtime(){
+
+    public void increasetime(){
+      minute+=1;
+      if(minute==60){
+          hour+=1;
+          minute=0;
+      }
+      if(hour==12){
+          PM=true;
+          AM=false;
+      }
+      if(hour==13){
+          hour=1;
+      }
 
     }
+
+    public void resettime(){
+        hour=6;
+        minute=0;
+        PM=false;
+        AM=true;
+    }
+   public int leavetime;
+}
+
     public void increasetime(){
       minute+=1;
       if(minute==60){
