@@ -56,6 +56,7 @@ public class Main {
         algorithm distribution = new algorithm(historicalcustomer, wait, averagetime);
         time clock = new time();
         int day=0;
+        String queuevalue="";
         ArrayList<customer> allcustomers = new ArrayList<customer>();
         boolean left = false;
         for (int num = 0; num < historicalcustomer; num++) {
@@ -189,6 +190,15 @@ public class Main {
                     if (!queue[number].empty()) {
                         System.out.println(distribution.ExponenetialdistributionCheckout(queue[number].top().currenttimecheckout));
                         //System.out.println("Queue amount: "+ queue[number].Queuecheck());
+                        if (clock.Arrivaltimeminute() < 10) {
+                            queuevalue+="Queue " +number +"amount:" + queue[number].Queuecheck()+ " at "+clock.Arrivaltimehour()+":"+"0"+clock.Arrivaltimeminute()+",";
+                        }
+                        if (clock.Arrivaltimeminute() >= 10) {
+
+                            queuevalue+="Queue " +number +"amount:" + queue[number].Queuecheck()+ " at "+clock.Arrivaltimehour()+":"+clock.Arrivaltimeminute()+",";
+
+                        }
+
                         if (distribution.ExponenetialdistributionCheckout(queue[number].top().currenttimecheckout) >= value) {
                             queue[number].Queueremove();
                             System.out.println("customer has left");
@@ -238,8 +248,15 @@ public class Main {
 
 
         }
+        String ArrivalLeave="";
+
+        for (int num = 0; num < allcustomers.size(); num++) {
+         ArrivalLeave+="Customer "+(num+1)+" Arrival time "+allcustomers.get(num).Arrivaltimehour+":"+allcustomers.get(num).Arrivaltimeminute+" Exit time:"+allcustomers.get(num).leavecheckout+",";
+        }
+
         file("file1",clock.dayvalues);
     }
 }
+
 
 
