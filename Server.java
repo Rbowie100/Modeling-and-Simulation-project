@@ -47,6 +47,23 @@ public class server {
 
     }
 
+    public int Queuecheck(){
+        if(head==null){
+            return 0;
+        }
+
+        else{
+            int value=1;
+            Node run = head;
+            if (run.next != null) {
+                run = run.next;
+                value+=1;
+            }
+            return value;
+
+        }
+    }
+
     public customer top(){
         return head.customerhold;
     }
