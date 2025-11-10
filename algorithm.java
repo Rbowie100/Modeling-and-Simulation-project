@@ -5,7 +5,7 @@ public class algorithm {
     int historicalCustomer;
     double historicalWait;
     double Averagetimespent;
-    algorithm(int historicalCustomer, int historicalWait,double Averagetime){
+    algorithm(int historicalCustomer, double historicalWait,double Averagetime){
         this.historicalCustomer=historicalCustomer;
         this.historicalWait=historicalWait;
         Averagetimespent=Averagetime;
@@ -87,13 +87,26 @@ public class algorithm {
         return go;
     }
     public double ExponenetialdistributionShop(double currenttime){
-        double exponent=-1*((1/Averagetimespent)*currenttime);
-        double value=(Math.pow(Averagetimespent*Math.E,exponent));
+        double exponent=0;
+        double value=0;
+
+
+        exponent=-1*((1/Averagetimespent)*currenttime);
+            value=1-(Math.pow(Math.E,exponent));
+
+
+
         return value;
     }
     public double ExponenetialdistributionCheckout(double currenttime){
-        double exponent=-1*((1/historicalWait)*currenttime);
-        double value=1-(Math.pow(historicalWait*Math.E,exponent));
+        double exponent=0;
+        double value=0;
+
+        exponent = -1 * ((1 / (historicalWait)) * currenttime);
+
+            value=1-(Math.pow(Math.E,exponent));
+
+
         return value;
     }
 
