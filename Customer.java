@@ -15,7 +15,6 @@ public class customer {
     customer(int Arrivaltimeminute, int Arrivaltimehour, time clock){
         this.Arrivaltimeminute=Arrivaltimeminute;
         this.Arrivaltimehour=Arrivaltimehour;
-        clock=new time();
     }
     public int getarrivalminute(){
         return Arrivaltimeminute;
