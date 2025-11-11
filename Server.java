@@ -1,10 +1,11 @@
 
 
 public class server {
+    int number=0;
 
     public class Node {
-        Node next;
-        customer customerhold;
+        public Node next;
+        public customer customerhold;
 
         Node(customer value) {
             customerhold = value;
@@ -12,18 +13,20 @@ public class server {
         }
     }
 
-    Node head;
-    Node tail;
+   public Node head;
+   public Node tail;
 
     public void QueueAdd(customer value) {
+        number++;
         if (head == null) {
 
             head = new Node(value);
             head.customerhold.setCheckout(true);
             head.customerhold.setShopping(false);
-        } else {
+        }
+        else {
             Node run = head;
-            if (run.next != null) {
+            while (run.next != null) {
                 run = run.next;
             }
             run.next = new Node(value);
@@ -34,45 +37,44 @@ public class server {
     }
 
     public void Queueremove() {
+        number--;
+        this.head.customerhold.setLeft(true);
+        this.head.customerhold.setCheckout(false);
 
-        if (head.next != null) {
-            head.customerhold.setLeft(true);
-            head.customerhold.setCheckout(false);
-            head = head.next;
-        } else {
-            head.customerhold.setLeft(true);
-            head.customerhold.setCheckout(false);
-            head = null;
+        if (this.head.next == null) {
+           this.head = null;
         }
+        else {
 
+            this.head = head.next;
+
+
+        }
     }
 
-    public int Queuecheck(){
-        if(head==null){
-            return 0;
-        }
+        public int Queuecheck () {
+            if (head == null) {
+                return 0;
+            } else {
+                int value = 1;
+                Node run = head;
+                if (run.next != null) {
+                    run = run.next;
+                    value += 1;
+                }
+                return value;
 
-        else{
-            int value=1;
-            Node run = head;
-            if (run.next != null) {
-                run = run.next;
-                value+=1;
             }
-            return value;
+        }
 
+        public customer top () {
+            return head.customerhold;
+        }
+        public boolean isempty () {
+            if (head == null) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
-
-    public customer top(){
-        return head.customerhold;
-    }
-    public boolean empty(){
-        if (head==null){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-}
