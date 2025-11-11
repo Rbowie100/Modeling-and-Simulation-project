@@ -119,11 +119,11 @@ public class Main {
                     allcustomers.add(new customer(clock.Arrivaltimeminute(), clock.Arrivaltimehour(), clock));
                 }
                 int arrayplace = 0;
-                System.out.println(historicalcustomer + " have entered the store at " + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + clock.Arrival());
+                System.out.println(historicalcustomer + " have entered the store at " + clock.Arrivaltimehour() + ":0" + clock.Arrivaltimeminute() + clock.Arrival());
 
                 for (day = 0; day < 7; day++) {
                     boolean dayend=false;
-                    while (dayend==false) {
+                    while (dayend==false|| left==false) {
                     if(clock.Arrivaltimehour() ==10 &&  clock.Arrival().equals("P.M") ) {
                         dayend=true;
                     }
@@ -214,65 +214,82 @@ public class Main {
                             System.out.println("Current time:" + clock.Arrivaltimehour() + ":" + clock.Arrivaltimeminute() + clock.Arrival());
                         }
 
-                        double value = rand.nextFloat();
-                        for (int num = arrayplace; num < allcustomers.size(); num++) {
-                            value = rand.nextFloat();
 
-                            if (allcustomers.get(num).Shopping) {
-                                allcustomers.get(num).minuteincrease();
-                                if (distribution.ExponenetialdistributionShop(allcustomers.get(num).currenttimeinstore) >= value) {
-                                    int go = queue[0].Queuecheck();
-                                    int place = 0;
-                                    for (int number = 1; number < queue.length; number++) {
-                                        if (go > queue[number].Queuecheck()) {
-                                            place = number;
-                                        }
-                                    }
-                                    queue[place].QueueAdd(allcustomers.get(num));
-                                    System.out.println("Customer has arrived at checkout");
+                            double value = rand.nextFloat();
+                            for (int num = arrayplace; num < allcustomers.size(); num++) {
+                                if (allcustomers.get(num).Shopping) {
 
-
+                                    allcustomers.get(num).minuteincrease();
+                                    allcustomers.get(num).setCurrenttimeinstore();
                                 }
-                                allcustomers.get(num).setCurrenttimeinstore();
+                                if (clock.Arrivaltimeminute() % 5== 0) {
 
-                            }
+                                    value = rand.nextFloat();
+
+                                    if (allcustomers.get(num).Shopping) {
+                                        if (distribution.ExponenetialdistributionShop(allcustomers.get(num).currenttimeinstore) >= value) {
+                                            int go = queue[0].number;
+                                            int place = 0;
+
+                                            for (int number = 1; number < queue.length; number++) {
+                                                if (go > queue[number].number) {
+                                                    place = number;
+                                                }
+                                            }
+                                            queue[place].QueueAdd(allcustomers.get(num));
+                                            System.out.println("Customer has arrived at checkout");
+
+
+                                        }
+
+                                    }
+                                }
+
+
                         }
 
 
                         for (int num = arrayplace; num < allcustomers.size(); num++) {
-                            value = rand.nextDouble();
+
                             if (allcustomers.get(num).checkout) {
                                 allcustomers.get(num).minuteincrease();
-                                allcustomers.get(num).setCurrenttimecheckout();
                             }
 
                         }
-                        for (int number = 0; number < queue.length; number++) {
-                            value = rand.nextDouble();
-                            if (!queue[number].empty()) {
-                               // System.out.println(distribution.ExponenetialdistributionCheckout(queue[number].top().currenttimecheckout));
-                                //System.out.println("Queue amount: "+ queue[number].Queuecheck());
-                                if (clock.Arrivaltimeminute() < 10) {
-                                    queuevalue += "Queue " + number + " amount:, " + queue[number].Queuecheck() + ", at " + clock.Arrivaltimehour() + ",:" + "0" + clock.Arrivaltimeminute() + ",\n";
-                                }
-                                if (clock.Arrivaltimeminute() >= 10) {
+                        if (clock.Arrivaltimeminute() % 2== 0) {
+                            for (int number = 0; number < queue.length; number++) {
 
-                                    queuevalue += "Queue " + number + " amount:,"+ queue[number].Queuecheck() + ", at " + clock.Arrivaltimehour() + ",:" + clock.Arrivaltimeminute() + ",\n";
+                                value = rand.nextDouble();
+                                if (!queue[number].isempty()) {
+                                    // System.out.println(distribution.ExponenetialdistributionCheckout(queue[number].top().currenttimecheckout));
+                                    //System.out.println("Queue amount: "+ queue[number].Queuecheck());
+                                    if (clock.Arrivaltimeminute() < 10) {
+                                        queuevalue += "Queue " + number + " amount:, " + queue[number].Queuecheck() + ", at " + clock.Arrivaltimehour() + ",:" + "0" + clock.Arrivaltimeminute() + ",\n";
+                                    }
+                                    if (clock.Arrivaltimeminute() >= 10) {
+
+                                        queuevalue += "Queue " + number + " amount:," + queue[number].Queuecheck() + ", at " + clock.Arrivaltimehour() + ",:" + clock.Arrivaltimeminute() + ",\n";
+
+                                    }
+                                    queue[number].top().setCurrenttimecheckout();
+
+                                    if (distribution.ExponenetialdistributionCheckout(queue[number].top().currenttimecheckout) >= value) {
+
+                                        queue[number].top().setLeavecheckouthour(clock.Arrivaltimehour());
+                                        queue[number].top().setLeavecheckout(clock.Arrivaltimeminute());
+                                        queue[number].Queueremove();
+                                        System.out.println("customer has left");
+                                    }
+
 
                                 }
 
-                                if (distribution.ExponenetialdistributionCheckout(queue[number].top().currenttimecheckout) >= value) {
-                                    allcustomers.get(number).setLeavecheckouthour(clock.Arrivaltimehour());
-                                    allcustomers.get(number).setLeavecheckout(clock.Arrivaltimeminute());
-                                    queue[number].Queueremove();
-                                    System.out.println("customer has left");
+                                if (queue[number].isempty()) {
+
                                 }
-                                if (queue[number].empty()) {
-                                    //  System.out.print("is empty");
-                                }
+
+
                             }
-
-
                         }
                         left=true;
 
@@ -280,6 +297,7 @@ public class Main {
 
                             if (allcustomers.get(num).left == false) {
                                 left=false;
+
                                 break;
                             }
 
@@ -314,7 +332,7 @@ public class Main {
                 String ArrivalLeave = "";
 
                 for (int num = 0; num < allcustomers.size(); num++) {
-                    ArrivalLeave += "Customer," + (num + 1) + ", Arrival time," + allcustomers.get(num).Arrivaltimehour + ",:" + allcustomers.get(num).Arrivaltimeminute + ",Exit time:," + allcustomers.get(num).leavecheckout + ", Time spent:"+allcustomers.get(num).getMinute()+"\n";
+                    ArrivalLeave += "Customer," + (num + 1) + ", Arrival time," + allcustomers.get(num).Arrivaltimehour + ",:" + allcustomers.get(num).Arrivaltimeminute + ",Exit time:," + allcustomers.get(num).leavecheckouthour + ": "+allcustomers.get(num).leavecheckout+", Time spent:"+allcustomers.get(num).getMinute()+"\n";
                 }
 
                 String value="";
@@ -323,9 +341,9 @@ public class Main {
             }
 
 
-            file(("CustomerAverage"+runnumber+".txt"), value, runnumber,parameters);
-            file(("Customer times"+runnumber+".txt"), ArrivalLeave, runnumber,parameters);
-            file(("QueueValues"+runnumber+".txt"), queuevalue, runnumber,parameters);
+            file(("CustomerAverage"+runnumber+".csv"), value, runnumber,parameters);
+            file(("Customer times"+runnumber+".csv"), ArrivalLeave, runnumber,parameters);
+            file(("QueueValues"+runnumber+".csv"), queuevalue, runnumber,parameters);
                 long endvalue = System.nanoTime();
 
                 long timespent = (endvalue - begin) / 1000000;
@@ -342,6 +360,7 @@ public class Main {
         }
 
     }
+
 
 
 
