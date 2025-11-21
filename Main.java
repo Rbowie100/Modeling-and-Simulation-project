@@ -265,11 +265,11 @@ public class Main {
                                     // System.out.println(distribution.ExponenetialdistributionCheckout(queue[number].top().currenttimecheckout));
                                     //System.out.println("Queue amount: "+ queue[number].Queuecheck());
                                     if (clock.Arrivaltimeminute() < 10) {
-                                        queuevalue += "Queue " + number + " amount:, " + queue[number].Queuecheck() + ", at " + clock.Arrivaltimehour() + ",:" + "0" + clock.Arrivaltimeminute() + ",\n";
+                                        queuevalue += "Queue " + number + " amount:, " + queue[number].number + ", at " + clock.Arrivaltimehour() + ",:" + "0" + clock.Arrivaltimeminute() + ",\n";
                                     }
                                     if (clock.Arrivaltimeminute() >= 10) {
 
-                                        queuevalue += "Queue " + number + " amount:," + queue[number].Queuecheck() + ", at " + clock.Arrivaltimehour() + ",:" + clock.Arrivaltimeminute() + ",\n";
+                                        queuevalue += "Queue " + number + " amount:," + queue[number].number + ", at " + clock.Arrivaltimehour() + ",:" + clock.Arrivaltimeminute() + ",\n";
 
                                     }
                                     queue[number].top().setCurrenttimecheckout();
@@ -362,8 +362,8 @@ public class Main {
                     ArrivalLeave += "Customer," + (num + 1) + ", Arrival time," + allcustomers.get(num).Arrivaltimehour + ",:" + allcustomers.get(num).Arrivaltimeminute + ",Exit time:," + allcustomers.get(num).leavecheckouthour + ": "+allcustomers.get(num).leavecheckout+", Time spent:"+allcustomers.get(num).getMinute()+"\n";
                 }
                 double average=0;
-                double max=0;
-                double min=0;
+                int max=0;
+            int min=allcustomers.get(arrayplace).getMinute();;
             for (int num = 0; num < allcustomers.size(); num++) {
                 average += allcustomers.get(num).getMinute();
                 if(max<allcustomers.get(num).getMinute()){
@@ -389,7 +389,7 @@ public class Main {
             }
             double confidenceintervalplus=average+1.96*(standarddeviation/Math.sqrt(allcustomers.size()));
             double confidenceintervalminus=average-1.96*(standarddeviation/Math.sqrt(allcustomers.size()));
-            value+="Average,"+average+",max:,"+ max+",min:,"+min+",Standard deviation:,"+standarddeviation+"Confidence interval:"+confidenceintervalplus+","+confidenceintervalminus+",\n";
+            value+="Average,"+average+",max:,"+ max+",min:,"+min+",Standard deviation:,"+standarddeviation+",Confidence interval:,"+confidenceintervalplus+","+confidenceintervalminus+",\n";
 
 
             file(("CustomerAverage"+runnumber+".csv"), value, runnumber,parameters);
