@@ -9,6 +9,11 @@ public class time {
     int timestart=6;
     String[] Days={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     double [] dayvalues=new double[7];
+    double [] max=new double[7];
+    double [] min=new double[7];
+    double [] standarddeviation=new double[7];
+    double [] confidenceintervalplus= new double [7];
+    double [] confidenceintervalminus= new double [7];
 
 
     public int Arrivaltimehour (){
@@ -48,24 +53,6 @@ public class time {
         minute=0;
         PM=false;
         AM=true;
-    }
-   public int leavetime;
-}
-
-    public void increasetime(){
-      minute+=1;
-      if(minute==60){
-          hour+=1;
-          minute=0;
-      }
-      if(hour==12){
-          PM=true;
-          AM=false;
-      }
-      if(hour==13){
-          hour=1;
-      }
-
     }
    public int leavetime;
 }
