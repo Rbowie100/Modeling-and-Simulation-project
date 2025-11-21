@@ -249,6 +249,7 @@ public class Main {
                         }
 
 
+
                         for (int num = arrayplace; num < allcustomers.size(); num++) {
 
                             if (allcustomers.get(num).checkout) {
@@ -308,14 +309,40 @@ public class Main {
 
 
                     double average = 0;
-                    for (int num = 0; num < allcustomers.size(); num++) {
+                    int dayamount= allcustomers.size()-arrayplace;
+                    int max=allcustomers.get(arrayplace).getMinute();;
+                    int min=allcustomers.get(arrayplace).getMinute();;
+                    for (int num = arrayplace; num < allcustomers.size(); num++) {
                         average += allcustomers.get(num).getMinute();
+                        if(max<allcustomers.get(num).getMinute()){
+                            max=allcustomers.get(num).getMinute();
+                        }
+                        if(min>allcustomers.get(num).getMinute()){
+                            min=allcustomers.get(num).getMinute();
+                        }
+
+
                     }
 
 
+
+                    average = (average / dayamount);
+                    double standarddeviation=0;
+                    for (int num = arrayplace; num < allcustomers.size(); num++) {
+                        standarddeviation+=(Math.pow(allcustomers.get(num).getMinute()-average,2));
+
+
+                    }
+                    standarddeviation=Math.sqrt(standarddeviation/dayamount);
+                    double confidenceintervalplus=average+1.96*(standarddeviation/Math.sqrt(dayamount));
+                    double confidenceintervalminus=average-1.96*(standarddeviation/Math.sqrt(dayamount));
+                    clock.confidenceintervalplus[day]=confidenceintervalplus;
+                    clock.confidenceintervalminus[day]=confidenceintervalminus;
+                    clock.standarddeviation[day]=standarddeviation;
                     arrayplace= allcustomers.size()-1;
-                    average = average / allcustomers.size();
                     clock.dayvalues[day] = average;
+                    clock.max[day]=max;
+                    clock.min[day]=min;
                     System.out.println("The average time spent in store is " + average);
                     clock.resettime();
                     if (day < 6) {
@@ -334,11 +361,35 @@ public class Main {
                 for (int num = 0; num < allcustomers.size(); num++) {
                     ArrivalLeave += "Customer," + (num + 1) + ", Arrival time," + allcustomers.get(num).Arrivaltimehour + ",:" + allcustomers.get(num).Arrivaltimeminute + ",Exit time:," + allcustomers.get(num).leavecheckouthour + ": "+allcustomers.get(num).leavecheckout+", Time spent:"+allcustomers.get(num).getMinute()+"\n";
                 }
+                double average=0;
+                double max=0;
+                double min=0;
+            for (int num = 0; num < allcustomers.size(); num++) {
+                average += allcustomers.get(num).getMinute();
+                if(max<allcustomers.get(num).getMinute()){
+                    max=allcustomers.get(num).getMinute();
+                }
+                if(min>allcustomers.get(num).getMinute()){
+                    min=allcustomers.get(num).getMinute();
+                }
 
+
+            }
+            average = (average / allcustomers.size());
+            double standarddeviation=0;
+            for (int num = 0; num < allcustomers.size(); num++) {
+                standarddeviation+=(Math.pow(allcustomers.get(num).getMinute()-average,2));
+
+
+            }
+            standarddeviation=Math.sqrt(standarddeviation/allcustomers.size());
                 String value="";
             for (int num = 0; num < clock.dayvalues.length; num++) {
-                value += clock.Days[num]+","+clock.dayvalues[num]+",\n";
+                value += clock.Days[num]+","+clock.dayvalues[num]+",max:,"+ clock.max[num]+",min:,"+clock.min[num]+",Standard deviation:,"+clock.standarddeviation[num]+",Confidence interval:,"+ clock.confidenceintervalplus[num]+","+clock.confidenceintervalminus[num]+",\n";
             }
+            double confidenceintervalplus=average+1.96*(standarddeviation/Math.sqrt(allcustomers.size()));
+            double confidenceintervalminus=average-1.96*(standarddeviation/Math.sqrt(allcustomers.size()));
+            value+="Average,"+average+",max:,"+ max+",min:,"+min+",Standard deviation:,"+standarddeviation+"Confidence interval:"+confidenceintervalplus+","+confidenceintervalminus+",\n";
 
 
             file(("CustomerAverage"+runnumber+".csv"), value, runnumber,parameters);
@@ -360,7 +411,6 @@ public class Main {
         }
 
     }
-
 
 
 
